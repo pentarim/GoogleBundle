@@ -16,6 +16,14 @@ class AnalyticsHelper extends Helper {
 	public function getTrackers(array $t = array()) {
 		return $this->analytics->getTrackers($t);
 	}
+	
+	public function getRequest() {
+		return $this->analytics->getRequest();
+	}
+
+	public function getRequestUri($withoutBaseUrl = TRUE) {
+		return $this->analytics->getRequestUri($withoutBaseUrl);
+	}
 
 	public function getName() {
 		return 'google_analytics';

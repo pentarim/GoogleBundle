@@ -7,7 +7,7 @@ _gaq.push(function() {
 {% if tracker.domain %} 	
 _gaq.push(['{{ tracker.name }}._setDomainName', '{{ tracker.domain }}']);
 {% endif %}
-_gaq.push(['{{ tracker.name }}._trackPageview']);
+_gaq.push(['{{ tracker.name }}._trackPageview', '{{ _view.google_analytics.getRequestUri() }}']);
 {% endfor %}
 (function() {
 	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;

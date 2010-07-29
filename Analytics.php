@@ -2,11 +2,15 @@
 
 namespace Bundle\GoogleBundle;
 
+use Symfony\Components\HttpKernel\Request;
+
 class Analytics {
 
-	private $_trackers;
+	private $_request;
+	private $_trackers;	
 
-	public function __construct(array $t = array()) {
+	public function __construct(Request $r, array $t = array()) {
+		$this->_request = $r;
 		$this->_trackers = $t;
 	}
 
@@ -23,5 +27,18 @@ class Analytics {
 			return $this->_trackers;
 		}
 	}	
+
+	public function getRequest() {
+		return $this->_request;
+	}
+
+	public function getRequestUri($withoutBaseUrl = TRUE) {
+		if ($withoutBaseUrl) {
+			$requestUri = $this->_request->getRequestUri();
+			$baseUrl = $this->_request->getBaseUrl();
+			return str_replace($baseUrl, '', $requestUri);
+		}
+		return $this->_request->getRequestUri();
+	}
 
 }
