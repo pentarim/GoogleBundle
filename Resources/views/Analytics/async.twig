@@ -16,7 +16,11 @@ var _gaq = _gaq || [];
 		{% endfor %}
 	{% endif %}
 
-	_gaq.push(['{{ tracker.name }}._trackPageview', '{{ _view.google_analytics.getRequestUri() }}']);
+	{% if _view.google_analytics.hasCustomPageView() %} 
+		_gaq.push(['{{ tracker.name }}._trackPageview', '{{ _view.google_analytics.getCustomPageView() }}']);
+	{% else %}
+		_gaq.push(['{{ tracker.name }}._trackPageview', '{{ _view.google_analytics.getRequestUri() }}']);
+	{% endif %}
 
 {% endfor %}
 

@@ -21,8 +21,12 @@ class AnalyticsHelper extends Helper {
 		return $this->analytics->getRequest();
 	}
 
-	public function getRequestUri($withoutBaseUrl = TRUE) {
-		return $this->analytics->getRequestUri($withoutBaseUrl);
+	public function getRequestUri() {
+		return $this->analytics->getRequestUri();
+	}
+
+	public function setWithoutBaseUrl($b = TRUE) {
+		return $this->analytics->setWithoutBaseUrl($b);
 	}
 	
 	public function hasCustomVars() {

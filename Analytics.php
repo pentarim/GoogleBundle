@@ -10,6 +10,8 @@ class Analytics {
 	private $_container;
 	private $_request;	
 	private $_trackers;	
+	private $_withoutBaseUrl = TRUE;
+	private $_customPageView;
 	private $_customVars = array();
 	
 	public function __construct(ContainerInterface $c, Request $r, array $t = array()) {
@@ -41,9 +43,13 @@ class Analytics {
 		return $this->_container;
 	}
 
-	public function getRequestUri($withoutBaseUrl = TRUE) {
+	public function setWithoutBaseUrl($b) {
+		$this->_withoutBaseUrl = $b;
+	}
+
+	public function getRequestUri() {
 		$requestUri = $this->_request->getRequestUri();		
-		if ($withoutBaseUrl) {			
+		if ($this->_withoutBaseUrl) {			
 			$baseUrl = $this->_request->getBaseUrl();
 			if ($baseUrl != '/') {
 				return str_replace($baseUrl, '', $requestUri);
@@ -73,6 +79,20 @@ class Analytics {
 		return $this->_customVars;
 	}
 
+	public function hasCustomPageView() {
+		if (isset($this->_customPageView)) {
+			return FALSE;
+		}
+		if (trim($this->customPageView) == '') {
+			return FALSE;
+		}
+		return TRUE;
+	}	
+
+	public function getCustomPageView() {
+		return $this->_customPageView;
+	}
+
 	public function bootServices() {
 
 		if ($this->getContainer()->hasService('simplecas')) {
@@ -99,6 +119,14 @@ class Analytics {
 				
 			} else {
 				$this->addCustomVar(1, 'logged', 'out', 1);	
+			}
+		}
+
+		if ($this->getContainer()->hasService('user')) {
+			$sess = $this->getContainer()->getService('user');
+			$pageView = $sess->getAttributeOnce('google_analytics/page_view');
+			if (isset($pageView) && trim($pageView) != '' ) {	
+				$this->_customPageView = $pageView;
 			}
 		}
 
