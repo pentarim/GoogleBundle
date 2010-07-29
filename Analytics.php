@@ -80,10 +80,10 @@ class Analytics {
 	}
 
 	public function hasCustomPageView() {
-		if (isset($this->_customPageView)) {
+		if (!isset($this->_customPageView)) {
 			return FALSE;
 		}
-		if (trim($this->customPageView) == '') {
+		if (trim($this->_customPageView) == '') {
 			return FALSE;
 		}
 		return TRUE;
@@ -122,7 +122,7 @@ class Analytics {
 			}
 		}
 
-		if ($this->getContainer()->hasService('user')) {
+		if ($this->getContainer()->hasService('user')) {			
 			$sess = $this->getContainer()->getService('user');
 			$pageView = $sess->getAttributeOnce('google_analytics/page_view');
 			if (isset($pageView) && trim($pageView) != '' ) {	

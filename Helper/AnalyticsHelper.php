@@ -37,6 +37,14 @@ class AnalyticsHelper extends Helper {
 		return $this->analytics->getCustomVars();
 	}
 
+	public function hasCustomPageView() {
+		return $this->analytics->hasCustomPageView();
+	}
+
+	public function getCustomPageView() {
+		return $this->analytics->getCustomPageView();
+	}
+
 	public function getName() {
 		return 'google_analytics';
 	}
