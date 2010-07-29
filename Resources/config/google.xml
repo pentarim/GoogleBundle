@@ -9,7 +9,8 @@
 
     <services>
         <service id="google.analytics" class="%google.analytics.class%" >    
-			<argument type="service" id="request" />
+			<argument type="service" id="service_container" />  			
+			<argument type="service" id="request" />			
 			<argument>%google.analytics.trackers%</argument>
         </service>		
 		<service id="templating.helper.google_analytics" class="Bundle\GoogleBundle\Helper\AnalyticsHelper">

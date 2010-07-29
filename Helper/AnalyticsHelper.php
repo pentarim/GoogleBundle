@@ -24,6 +24,14 @@ class AnalyticsHelper extends Helper {
 	public function getRequestUri($withoutBaseUrl = TRUE) {
 		return $this->analytics->getRequestUri($withoutBaseUrl);
 	}
+	
+	public function hasCustomVars() {
+		return $this->analytics->hasCustomVars();
+	}
+
+	public function getCustomVars() {
+		return $this->analytics->getCustomVars();
+	}
 
 	public function getName() {
 		return 'google_analytics';
