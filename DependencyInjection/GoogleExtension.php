@@ -2,25 +2,25 @@
 
 namespace Bundle\GoogleBundle\DependencyInjection;
 
-use Symfony\Components\DependencyInjection\Loader\LoaderExtension,
+use Symfony\Components\DependencyInjection\Extension\Extension,
 	Symfony\Components\DependencyInjection\Loader\XmlFileLoader,
-	Symfony\Components\DependencyInjection\BuilderConfiguration;
+	Symfony\Components\DependencyInjection\ContainerBuilder;
 
-class GoogleExtension extends LoaderExtension {
+class GoogleExtension extends Extension {
 
 	protected $resources = array(
         'google' => 'google.xml',
     );
 		
-	public function analyticsLoad($config, BuilderConfiguration $configuration) {
-		if (!$configuration->hasDefinition('google')) {
-			$loader = new XmlFileLoader(__DIR__.'/../Resources/config');
-			$configuration->merge($loader->load($this->resources['google']));
+	public function analyticsLoad($config, ContainerBuilder $container) {
+		if (!$container->hasDefinition('google')) {
+			$loader = new XmlFileLoader($container, __DIR__.'/../Resources/config');
+			$loader->load($this->resources['google']);
 		}
 		if (isset($config['trackers'])) {
-           $configuration->setParameter('google.analytics.trackers', $config['trackers']);
+           $container->setParameter('google.analytics.trackers', $config['trackers']);
         }
-		return $configuration;
+		return $container;
 	}
 
     /**
