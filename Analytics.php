@@ -3,7 +3,7 @@
 namespace Bundle\GoogleBundle;
 
 use Symfony\Components\DependencyInjection\ContainerInterface;
-use Symfony\Components\HttpKernel\Request;
+use Symfony\Components\HttpFoundation\Request;
 
 class Analytics {
 
@@ -95,7 +95,7 @@ class Analytics {
 
 	public function bootServices() {
 
-		if ($this->getContainer()->hasService('simplecas')) {
+		if ($this->getContainer()->has('simplecas')) {
 			$uid = $this->getContainer()->getCasService()->getUid();
 			if (isset($uid) && trim($uid) !== '') {
 				try {
@@ -122,8 +122,8 @@ class Analytics {
 			}
 		}
 
-		if ($this->getContainer()->hasService('user')) {			
-			$sess = $this->getContainer()->getService('user');
+		if ($this->getContainer()->has('user')) {			
+			$sess = $this->getContainer()->get('user');
 			$pageView = $sess->getAttributeOnce('google_analytics/page_view');
 			if (isset($pageView) && trim($pageView) != '' ) {	
 				$this->_customPageView = $pageView;
