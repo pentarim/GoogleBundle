@@ -8,7 +8,7 @@ use Symfony\Components\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Components\DependencyInjection\ContainerBuilder;
 use Bundle\GoogleBundle\DependencyInjection\GoogleExtension;
 
-class Bundle extends BaseBundle {
+class GoogleBundle extends BaseBundle {
     
 	/**
      * Customizes the Container instance.

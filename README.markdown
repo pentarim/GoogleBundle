@@ -9,7 +9,7 @@ Add GoogleBundle to the `registerBundles()` method of your application kernel:
     public function registerBundles()
     {
         return array(
-            new Bundle\GoogleBundle\Bundle(),
+            new Bundle\GoogleBundle\GoogleBundle(),
         );
     }
 
