@@ -16,7 +16,7 @@ class GoogleBundle extends BaseBundle {
      * @param Symfony\Components\DependencyInjection\ParameterBag\ParameterBagInterface $parameterBag A ParameterBagInterface instance
      * @return Symfony\Components\DependencyInjection\BuilderConfiguration A BuilderConfiguration instance
      */
-    public function buildContainer(ParameterBagInterface $parameterBag)
+    public function buildContainer()
     {
         ContainerBuilder::registerExtension(new GoogleExtension());
     }
