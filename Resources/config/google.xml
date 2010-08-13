@@ -14,7 +14,7 @@
 			<argument>%google.analytics.trackers%</argument>
         </service>		
 		<service id="templating.helper.google_analytics" class="Bundle\GoogleBundle\Helper\AnalyticsHelper">
-			<annotation name="templating.helper" alias="google_analytics" />
+			<tag name="templating.helper" alias="google_analytics" />
 			<argument type="service" id="google.analytics" />
 		</service>
     </services>
