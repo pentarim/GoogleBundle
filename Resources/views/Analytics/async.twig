@@ -12,7 +12,7 @@ var _gaq = _gaq || [];
 
 	{% if _view.google_analytics.hasCustomVars() %} 
 		{% for customVar in _view.google_analytics.getCustomVars() %}
-			_gaq.push(['{{ tracker.name }}._setCustomVar', '{{ customVar.index }}', '{{ customVar.name }}', '{{ customVar.value }}', '{{ customVar.optScope }}']);
+			_gaq.push(['{{ tracker.name }}._setCustomVar', {{ customVar.index }}, '{{ customVar.name }}', '{{ customVar.value }}', {{ customVar.optScope }}]);
 		{% endfor %}
 	{% endif %}
 
