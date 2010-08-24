@@ -13,8 +13,20 @@ class AdwordsHelper extends Helper {
 		$this->adwords = $adwords;
 	}
 
-	public function getHasConversion() {
-		return $this->adwords->getHasConversion();
+	public function getConversion() {
+		return $this->adwords->getConversion();
+	}
+
+	public function getConversionId() {
+		return $this->adwords->getConversionId();
+	}
+
+	public function getConversionLabel() {
+		return $this->adwords->getConversionLabel();
+	}
+
+	public function getConversionValue() {
+		return $this->adwords->getConversionValue();
 	}
 
 	public function getName() {
