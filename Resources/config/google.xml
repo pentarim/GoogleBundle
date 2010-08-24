@@ -8,6 +8,7 @@
 		<parameter key="google.adwords.class">Bundle\GoogleBundle\Adwords</parameter>
 		<parameter key="google.adwords.originator" />
     </parameters>
+
     <services>
     	<service id="google.analytics" class="%google.analytics.class%" >
 			<argument>%google.analytics.trackers%</argument>
