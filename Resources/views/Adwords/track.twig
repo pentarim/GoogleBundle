@@ -1,0 +1,22 @@
+{% if _view.google_adwords.getHasConversion() %}
+<!-- GOOGLE CODE FOR CONVERSION START -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = {{ _view.google_adwords.getConversionId() }};
+var google_conversion_language = "en";
+var google_conversion_format = "2";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "{{ _view.google_adwords.getConversionLabel() }}";
+var google_conversion_value = {{ _view.google_adwords.getConversionValue() }};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" 
+	src="https://www.googleadservices.com/pagead/conversion/{{ _view.google_adwords.getConversionId() }}/?label={{ _view.google_adwords.getConversionLabel() }}&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+<!-- GOOGLE CODE FOR CONVERSION END -->
+{% endif %}

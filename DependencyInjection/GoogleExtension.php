@@ -23,6 +23,17 @@ class GoogleExtension extends LoaderExtension {
 		return $configuration;
 	}
 
+	public function adwordsLoad($config, BuilderConfiguration $configuration) {
+		if (!$configuration->hasDefinition('google')) {
+			$loader = new XmlFileLoader(__DIR__.'/../Resources/config');
+			$configuration->merge($loader->load($this->resources['google']));
+		}
+		if (isset($config['originator'])) {
+           $configuration->setParameter('google.adwords.originator', $config['originator']);
+        }
+		return $configuration;
+	}
+
     /**
      * Returns the recommended alias to use in XML.
      *
