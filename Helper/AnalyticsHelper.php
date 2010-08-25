@@ -3,7 +3,7 @@
 namespace Bundle\GoogleBundle\Helper;
 
 use Symfony\Components\Templating\Helper\Helper,
-	Bundle\GoogleBundle\Analytics;
+		Bundle\GoogleBundle\Analytics;
 
 class AnalyticsHelper extends Helper {
 
@@ -16,7 +16,7 @@ class AnalyticsHelper extends Helper {
 	public function getTrackers(array $t = array()) {
 		return $this->analytics->getTrackers($t);
 	}
-	
+
 	public function getRequest() {
 		return $this->analytics->getRequest();
 	}
@@ -28,7 +28,7 @@ class AnalyticsHelper extends Helper {
 	public function setWithoutBaseUrl($b = TRUE) {
 		return $this->analytics->setWithoutBaseUrl($b);
 	}
-	
+
 	public function hasCustomVars() {
 		return $this->analytics->hasCustomVars();
 	}
@@ -43,6 +43,14 @@ class AnalyticsHelper extends Helper {
 
 	public function getCustomPageView() {
 		return $this->analytics->getCustomPageView();
+	}
+
+	public function hasPageViewQueue() {
+		return $this->analytics->hasPageViewQueue();
+	}
+
+	public function getPageViewQueue() {
+		return $this->analytics->getPageViewQueue();
 	}
 
 	public function getName() {
