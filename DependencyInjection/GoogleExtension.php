@@ -2,9 +2,9 @@
 
 namespace Bundle\GoogleBundle\DependencyInjection;
 
-use Symfony\Components\DependencyInjection\Extension\Extension,
-	Symfony\Components\DependencyInjection\Loader\XmlFileLoader,
-	Symfony\Components\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\Extension,
+	Symfony\Component\DependencyInjection\Loader\XmlFileLoader,
+	Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class GoogleExtension extends Extension {
 

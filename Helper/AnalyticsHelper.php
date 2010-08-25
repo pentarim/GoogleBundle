@@ -2,7 +2,7 @@
 
 namespace Bundle\GoogleBundle\Helper;
 
-use Symfony\Components\Templating\Helper\Helper,
+use Symfony\Component\Templating\Helper\Helper,
 	Bundle\GoogleBundle\Analytics;
 
 class AnalyticsHelper extends Helper {

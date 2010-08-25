@@ -2,8 +2,8 @@
 
 namespace Bundle\GoogleBundle;
 
-use Symfony\Components\DependencyInjection\ContainerInterface;
-use Symfony\Components\HttpFoundation\Request;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 class Analytics {
 
