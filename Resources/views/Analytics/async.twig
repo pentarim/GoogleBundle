@@ -6,17 +6,23 @@ var _gaq = _gaq || [];
 		var {{ tracker.name }} = _gaq._createAsyncTracker('{{ tracker.accountId }}','{{ tracker.name }}');
 	});
 
-	{% if tracker.domain %} 	
+	{% if tracker.domain %}
 		_gaq.push(['{{ tracker.name }}._setDomainName', '{{ tracker.domain }}']);
 	{% endif %}
 
-	{% if _view.google_analytics.hasCustomVars() %} 
+	{% if _view.google_analytics.hasCustomVars() %}
 		{% for customVar in _view.google_analytics.getCustomVars() %}
-			_gaq.push(['{{ tracker.name }}._setCustomVar', '{{ customVar.index }}', '{{ customVar.name }}', '{{ customVar.value }}', '{{ customVar.optScope }}']);
+			_gaq.push(['{{ tracker.name }}._setCustomVar', {{ customVar.index }}, '{{ customVar.name }}', '{{ customVar.value }}', {{ customVar.optScope }}]);
 		{% endfor %}
 	{% endif %}
 
-	{% if _view.google_analytics.hasCustomPageView() %} 
+	{% if _view.google_analytics.hasPageViewQueue() %}
+		{% for pageView in _view.google_analytics.getPageViewQueue() %}
+			_gaq.push(['{{ tracker.name }}._trackPageview', '{{ pageView }}']);
+		{% endfor %}
+	{% endif %}
+
+	{% if _view.google_analytics.hasCustomPageView() %}
 		_gaq.push(['{{ tracker.name }}._trackPageview', '{{ _view.google_analytics.getCustomPageView() }}']);
 	{% else %}
 		_gaq.push(['{{ tracker.name }}._trackPageview', '{{ _view.google_analytics.getRequestUri() }}']);
