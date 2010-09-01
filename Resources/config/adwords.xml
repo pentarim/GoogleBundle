@@ -11,7 +11,7 @@
     <services>
     	
 		<service id="google.adwords" class="%google.adwords.class%" >
-			<argument type="service" id="user" />
+			<argument type="service" id="session" />
 			<argument>%google.adwords.originator%</argument>
 			<argument>%google.adwords.conversions%</argument>
 		</service>			
