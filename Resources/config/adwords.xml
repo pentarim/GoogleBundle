@@ -17,7 +17,7 @@
 		</service>			
 		
 		<service id="templating.helper.google_adwords" class="Bundle\GoogleBundle\Helper\AdwordsHelper">
-			<annotation name="templating.helper" alias="google_adwords" />
+			<tag name="templating.helper" alias="google_adwords" />
 			<argument type="service" id="google.adwords" />
 		</service>
 

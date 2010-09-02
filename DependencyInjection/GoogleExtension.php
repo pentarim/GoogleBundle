@@ -24,18 +24,18 @@ class GoogleExtension extends Extension {
 		return $container;
 	}
 
-	public function adwordsLoad($config, BuilderConfiguration $configuration) {
-		if (!$configuration->hasDefinition('google.adwords')) {
+	public function adwordsLoad($config, ContainerBuilder $container) {
+		if (!$container->hasDefinition('google.adwords')) {
 			$loader = new XmlFileLoader($container, __DIR__.'/../Resources/config');
 			$loader->load($this->resources['google_adwords']);
 		}
 		if (isset($config['originator'])) {
-			$configuration->setParameter('google.adwords.originator', $config['originator']);
+			$container->setParameter('google.adwords.originator', $config['originator']);
 		}
 		if (isset($config['conversions'])) {
-			$configuration->setParameter('google.adwords.conversions', $config['conversions']);
+			$container->setParameter('google.adwords.conversions', $config['conversions']);
 		}
-		return $configuration;
+		return $container;
 	}
 
 	/**
