@@ -3,7 +3,7 @@
 namespace Bundle\GoogleBundle\Helper;
 
 use Symfony\Component\Templating\Helper\Helper;
-use Bundle\GoogleBundle\Analytics;
+use Bundle\GoogleBundle\Adwords;
 
 class AdwordsHelper extends Helper {
 
