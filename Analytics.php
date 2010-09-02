@@ -152,7 +152,7 @@ class Analytics {
 	protected function add($key, $message) {
 		$bucket = $this->session->get($key, array());
 		$bucket[] = $message;
-		$this->session->setAttribute($key, $bucket);
+		$this->session->set($key, $bucket);
 	}
 
 	protected function has($key) {

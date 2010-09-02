@@ -2,15 +2,17 @@
 
 namespace Bundle\GoogleBundle;
 
+use Symfony\Component\HttpFoundation\Session;
+
 class Adwords {
 
-	private $user;
+	private $session;
 	private $originatorOptions;
 	private $conversion;
 	private $conversionPages;
 
-	public function __construct($user, $originatorOptions, array $conversionPages = array()) {
-		$this->user = $user;
+	public function __construct(Session $session, $originatorOptions, array $conversionPages = array()) {
+		$this->session = $session;
 		$this->originatorOptions = $originatorOptions;
 		$this->conversionPages = $conversionPages;
 	}
@@ -23,28 +25,29 @@ class Adwords {
 	}	
 
 	public function getConversion() {
-		if ($conversion = $this->user->getAttributeOnce('originator/google/adwords/conversion')) {
+		if ($conversion = $this->session->get('originator/google/adwords/conversion')) {
+			$this->session->remove('originator/google/adwords/conversion');
 			$this->conversion = $conversion;
 		}
 		return $this->conversion;
 	}
 
 	public function setConversion($id, $label, $value = 0) {
-		if ($this->user->getAttribute('originator/google/adwords/conversion')) {
+		if ($this->session->get('originator/google/adwords/conversion')) {
 			return;
 		}
 		$conversion 		= new \stdClass();
 		$conversion->id 	= $id;
 		$conversion->label 	= $label;
 		$conversion->value 	= $value;
-		$this->user->setAttribute('originator/google/adwords/conversion', $conversion);
+		$this->session->set('originator/google/adwords/conversion', $conversion);
 	}
 
 	public function removeConversion($id) {
-		if (!$this->user->getAttribute('originator/google/adwords/conversion')) {
+		if (!$this->session->get('originator/google/adwords/conversion')) {
 			return;
 		}
-		$this->user->removeAttribute('originator/google/adwords/conversion');
+		$this->session->remove('originator/google/adwords/conversion');
 	}
 
 
