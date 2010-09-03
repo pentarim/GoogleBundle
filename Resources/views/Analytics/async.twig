@@ -8,6 +8,8 @@ var _gaq = _gaq || [];
 
 	{% if tracker.domain %}
 		_gaq.push(['{{ tracker.name }}._setDomainName', '{{ tracker.domain }}']);
+		_gaq.push(['{{ tracker.name }}._setAllowLinker', true]);
+		_gaq.push(['{{ tracker.name }}._setAllowHash', false]);
 	{% endif %}
 
 	{% if _view.google_analytics.hasCustomVars() %}
