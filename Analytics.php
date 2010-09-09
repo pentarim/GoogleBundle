@@ -10,6 +10,7 @@ class Analytics {
 
 	const CUSTOM_PAGE_VIEW_KEY = 'google_analytics/page_view';
 	const PAGE_VIEW_QUEUE_KEY  = 'google_analytics/page_view/queue';
+	const FUNNEL_GOAL_KEY      = 'google_analytics/funnel_goal';
 
 	private $container;
 	private $request;	

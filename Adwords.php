@@ -6,6 +6,8 @@ use Symfony\Component\HttpFoundation\Session;
 
 class Adwords {
 
+	const CONVERSION_KEY = 'originator/google/adwords/conversion';
+
 	private $session;
 	private $originatorOptions;
 	private $conversion;
@@ -18,57 +20,47 @@ class Adwords {
 	}
 
 	public function setConversionByPage($page) {
-		if (isset($this->conversionPages[$page])) {
+		if (array_key_exists($page,$this->conversionPages)) {
 			$conversion = $this->conversionPages[$page];
 			$this->setConversion($conversion['id'], $conversion['label'], $conversion['value']);
 		} 
 	}	
 
+	public function hasConversion() {
+		return $this->session->has(self::CONVERSION_KEY);
+	}
+
 	public function getConversion() {
-		if ($conversion = $this->session->get('originator/google/adwords/conversion')) {
-			$this->session->remove('originator/google/adwords/conversion');
-			$this->conversion = $conversion;
+		if ($this->session->has(self::CONVERSION_KEY)) {
+			$this->conversion = $this->session->get(self::CONVERSION_KEY);			
+			$this->session->remove(self::CONVERSION_KEY);			
 		}
 		return $this->conversion;
 	}
 
 	public function setConversion($id, $label, $value = 0) {
-		if ($this->session->get('originator/google/adwords/conversion')) {
+		if ($this->session->has(self::CONVERSION_KEY)) {
 			return;
 		}
 		$conversion 		= new \stdClass();
 		$conversion->id 	= $id;
 		$conversion->label 	= $label;
 		$conversion->value 	= $value;
-		$this->session->set('originator/google/adwords/conversion', $conversion);
+		$this->session->set(self::CONVERSION_KEY, $conversion);
 	}
-
-	public function removeConversion($id) {
-		if (!$this->session->get('originator/google/adwords/conversion')) {
-			return;
-		}
-		$this->session->remove('originator/google/adwords/conversion');
-	}
-
 
 	public function getConversionId() {
-		if (!$this->getConversion()) {
-			return;
-		}		
+			
 		return $this->getConversion()->id;
 	}
 
 	public function getConversionLabel() {
-		if (!$this->getConversion()) {
-			return;
-		}		
+			
 		return $this->getConversion()->label;
 	}
 
 	public function getConversionValue() {
-		if (!$this->getConversion()) {
-			return;
-		}		
+			
 		return $this->getConversion()->value;
 	}
 
