@@ -133,8 +133,8 @@ class Analytics {
 
 		if ($this->getContainer()->has('session')) {
 			$sess = $this->getContainer()->get('session');
-			$pageView = $sess->get('google_analytics/page_view');
-      $sess->remove('google_analytics/page_view');
+			$pageView = $sess->get(self::CUSTOM_PAGE_VIEW_KEY);
+      $sess->remove(self::CUSTOM_PAGE_VIEW_KEY);
 			if (isset($pageView) && trim($pageView) != '' ) {	
 				$this->customPageView = $pageView;
 			}
