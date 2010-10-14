@@ -32,10 +32,11 @@ Include the Google Analytics Async template like this
     {% include "GoogleBundle:Analytics:async" with ['_view': _view] %}
 
 #### Features
-* Logging a Default Page view requires no additional code
+* Logging a Default Page View requires no additional code
 * Sending a Custom Page View
-		$this->container()->get('google.analytics')->setCustomPageView('/profile/'.$username);
-* Adding to Page View Queue (Note: Page View Queue is always executed before a Custom Page View)
+    $this->container()->get('google.analytics')->setCustomPageView('/profile/'.$username);
+* Adding to Page View Queue
+** Note: Page View Queue is always executed before a Custom Page View)
     $this->container()->get('google.analytics')->addPageViewQueue('/my-first-page-view-in-queue');
     $this->container()->get('google.analytics')->addPageViewQueue('/my-second-page-view-in-queue');		
 
