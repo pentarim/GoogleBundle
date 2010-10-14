@@ -29,7 +29,15 @@ Enable loading of the Google Analytics service by adding the following to the ap
 
 #### View
 Include the Google Analytics Async template like this
-	{% include "GoogleBundle:Analytics:async" with ['_view': _view] %}
+    {% include "GoogleBundle:Analytics:async" with ['_view': _view] %}
+
+#### Features
+* Logging a Default Page view requires no additional code
+* Sending a Custom Page View
+		$this->container()->get('google.analytics')->setCustomPageView('/profile/'.$username);
+* Adding to Page View Queue (Note: Page View Queue is always executed before a Custom Page View)
+    $this->container()->get('google.analytics')->addPageViewQueue('/my-first-page-view-in-queue');
+    $this->container()->get('google.analytics')->addPageViewQueue('/my-second-page-view-in-queue');		
 
 ### Google Adwords
 
@@ -49,6 +57,9 @@ Enable loading of the Google Adwords service by adding the following to the appl
     		  label: checkoutThanksLabel
 		      value: 0
 
+#### Controller
+    $this->container->get('google.adwords')->setConversionByPage('account_create');
+
 #### View
 Include the Google Adwords tracking template like this
-		{% include "GoogleBundle:Adwords:track" with ['_view': _view] %}
+    {% include "GoogleBundle:Adwords:track" with ['_view': _view] %}

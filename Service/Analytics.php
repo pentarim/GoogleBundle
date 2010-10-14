@@ -96,6 +96,10 @@ class Analytics {
 		return TRUE;
 	}	
 
+	public function setCustomPageView($pageView) {
+		$this->session()->set(self::CUSTOM_PAGE_VIEW_KEY, $pageView);		
+	}
+
 	public function getCustomPageView() {
 		return $this->customPageView;
 	}
@@ -130,7 +134,7 @@ class Analytics {
 		if ($this->getContainer()->has('session')) {
 			$sess = $this->getContainer()->get('session');
 			$pageView = $sess->get('google_analytics/page_view');
-            $sess->remove('google_analytics/page_view');
+      $sess->remove('google_analytics/page_view');
 			if (isset($pageView) && trim($pageView) != '' ) {	
 				$this->customPageView = $pageView;
 			}
