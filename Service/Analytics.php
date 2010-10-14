@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\GoogleBundle;
+namespace Bundle\GoogleBundle\Service;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;

@@ -6,7 +6,7 @@
 
 Add GoogleBundle to the `registerBundles()` method of your application kernel:
 
-		public function registerBundles()
+    public function registerBundles()
     {
         return array(
             new Bundle\GoogleBundle\GoogleBundle(),
@@ -20,7 +20,7 @@ Add GoogleBundle to the `registerBundles()` method of your application kernel:
 #### Application config.yml
 Enable loading of the Google Analytics service by adding the following to the application's 
 `config.yml` file
-		google.analytics:
+    google.analytics:
   		trackers:
     		shop:
       		name: MyJavaScriptCompatibleVariableNameWithNoSpaces
@@ -36,7 +36,7 @@ Include the Google Analytics Async template like this
 #### Application config.yml
 Enable loading of the Google Adwords service by adding the following to the applications's 
 `config.yml` file
-		google.adwords:
+    google.adwords:
   		originator:
     		lifetime: 86400
 		  conversions:
