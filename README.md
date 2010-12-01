@@ -27,9 +27,20 @@ Enable loading of the Google Analytics service by adding the following to the ap
           accountId: UA-xxxx-x
           domain: .mydomain.com
 
+in xml:
+- - -
+  <google:analytics>
+    <google:trackers>
+      <google:shop name="MyJavaScriptCompatibleVariableNameWithNoSpaces" accountId="UA-xxxx-x" domain=".mydomain.com"/>
+    </google:trackers>
+  </google:analytics>
+
 #### View
-Include the Google Analytics Async template like this
+Include the Google Analytics Async template like this with twig
     {% include "GoogleBundle:Analytics:async" with ['_view': _view] %}
+
+for php
+    <?php echo $view->render("GoogleBundle:Analytics:async.php") ?>
 
 #### Features
 * Logging a Default Page View requires no additional code
