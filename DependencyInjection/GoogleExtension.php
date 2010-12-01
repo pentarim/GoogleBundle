@@ -64,6 +64,6 @@ class GoogleExtension extends Extension {
 	 * @return string The XSD base path
 	 */
 	public function getXsdValidationBasePath() {
-		return __DIR__.'/../Resources/config/';
+		return __DIR__.'/../Resources/config/schema';
 	}
 }
