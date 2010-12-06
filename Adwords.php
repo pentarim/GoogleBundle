@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\GoogleBundle\Service;
+namespace Bundle\GoogleBundle;
 
 use Symfony\Component\HttpFoundation\Session;
 

@@ -3,7 +3,7 @@
 namespace Bundle\GoogleBundle\Helper;
 
 use Symfony\Component\Templating\Helper\Helper;
-use Bundle\GoogleBundle\Service\Analytics;
+use Bundle\GoogleBundle\Analytics;
 
 class AnalyticsHelper extends Helper {
 

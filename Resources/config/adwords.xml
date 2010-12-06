@@ -1,25 +1,24 @@
 <container xmlns="http://www.symfony-project.org/schema/dic/services"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd">
 
-    <parameters>		
-			<parameter key="google.adwords.class">Bundle\GoogleBundle\Service\Adwords</parameter>
-			<parameter key="google.adwords.originator" />
-			<parameter key="google.adwords.conversions" type="collection" />
-    </parameters>
+	<parameters>
+		<parameter key="google.adwords.class">Bundle\GoogleBundle\Adwords</parameter>
+		<parameter key="google.adwords.originator" />
+		<parameter key="google.adwords.conversions" type="collection" />
+	</parameters>
 
-    <services>	
-			<service id="google.adwords" class="%google.adwords.class%" >
+	<services>
+		<service id="google.adwords" class="%google.adwords.class%" >
 			<argument type="service" id="session" />
 			<argument>%google.adwords.originator%</argument>
 			<argument>%google.adwords.conversions%</argument>
-		</service>			
-		
+		</service>
+
 		<service id="templating.helper.google_adwords" class="Bundle\GoogleBundle\Helper\AdwordsHelper">
 			<tag name="templating.helper" alias="google_adwords" />
 			<argument type="service" id="google.adwords" />
 		</service>
-
-   </services>
+	</services>
 
 </container>
