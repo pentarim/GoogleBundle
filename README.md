@@ -22,7 +22,7 @@ Enable loading of the Google Analytics service by adding the following to the ap
 - - -
     google.analytics:
       trackers:
-        shop:
+        default:
           name: MyJavaScriptCompatibleVariableNameWithNoSpaces
           accountId: UA-xxxx-x
           domain: .mydomain.com
@@ -51,7 +51,7 @@ for php
 ** Note: Page View Queue is always executed before a Custom Page View)
 - - -
     $this->container()->get('google.analytics')->addPageViewQueue('/my-first-page-view-in-queue');
-    $this->container()->get('google.analytics')->addPageViewQueue('/my-second-page-view-in-queue');		
+    $this->container()->get('google.analytics')->addPageViewQueue('/my-second-page-view-in-queue');
 
 ### Google Adwords
 
@@ -59,7 +59,7 @@ for php
 Enable loading of the Google Adwords service by adding the following to the applications's `config.yml` file:
 - - -
     google.adwords:
-  		originator:
+      originator:
         lifetime: 86400
       conversions:
         account_create:
