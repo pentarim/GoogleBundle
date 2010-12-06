@@ -106,31 +106,6 @@ class Analytics {
 
 	public function bootServices() {
 
-		if ($this->getContainer()->has('simplecas')) {
-			$uid = $this->getContainer()->getCasService()->getUid();
-			if (isset($uid) && trim($uid) !== '') {
-				try {
-					$user = $this->getContainer()->getCasService()->getUser();
-					if (isset($user)) {
-						$this->addCustomVar(1, 'logged', 'in', 2);
-						if ($seller = $user->getSeller()) {
-							$this->addCustomVar(2, 'entity', 'seller', 2);
-						} else if ($supplier = $user->getSupplier()) {
-							$this->addCustomVar(2, 'entity', 'supplier', 2);
-						} else {
-							$this->addCustomVar(2, 'entity', 'customer', 2);
-						}
-					} else {
-						$this->addCustomVar(1, 'logged', 'out', 2);
-					}
-				} catch (\Exception $e) {
-					$this->addCustomVar(1, 'logged', 'out', 2);
-				}
-			} else {
-				$this->addCustomVar(1, 'logged', 'out', 2);
-			}
-		}
-
 		if ($this->getContainer()->has('session')) {
 			$sess = $this->getContainer()->get('session');
 			$pageView = $sess->get(self::CUSTOM_PAGE_VIEW_KEY);
