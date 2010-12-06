@@ -1,13 +1,13 @@
 <?php
 
-namespace Bundle\GoogleBundle\Service;
+namespace Bundle\GoogleBundle;
 
-use Bundle\GoogleBundle\Service\Analytics;
+use Bundle\GoogleBundle\Analytics;
 
 class AnalyticsTest extends \PHPUnit_Framework_TestCase {
 
 	protected $analytics;
-	protected $container;	
+	protected $container;
 	protected $request;
 	protected $user;
 	protected $config;
@@ -16,7 +16,7 @@ class AnalyticsTest extends \PHPUnit_Framework_TestCase {
 		parent::setUp();
 		$this->markTestIncomplete('Mocking incomplete');
 		$this->request = $this->getRequestMock();
-		$this->user = $this->getUserMock();		
+		$this->user = $this->getUserMock();
 	}
 
 	public function tearDown() {
