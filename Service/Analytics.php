@@ -13,15 +13,15 @@ class Analytics {
 	const FUNNEL_GOAL_KEY      = 'google_analytics/funnel_goal';
 
 	private $container;
-	private $request;	
+	private $request;
 	private $session;
-	private $trackers;	
+	private $trackers;
 	private $withoutBaseUrl = TRUE;
 	private $customPageView;
 	private $customVars = array();
 
 	public function __construct(ContainerInterface $c, Request $r, Session $s, array $t = array()) {
-		$this->container = $c;		
+		$this->container = $c;
 		$this->request = $r;
 		$this->session = $s;
 		$this->trackers = $t;
@@ -40,7 +40,7 @@ class Analytics {
 		} else {
 			return $this->trackers;
 		}
-	}	
+	}
 
 	public function getRequest() {
 		return $this->request;
@@ -55,8 +55,8 @@ class Analytics {
 	}
 
 	public function getRequestUri() {
-		$requestUri = $this->request->getRequestUri();		
-		if ($this->withoutBaseUrl) {			
+		$requestUri = $this->request->getRequestUri();
+		if ($this->withoutBaseUrl) {
 			$baseUrl = $this->request->getBaseUrl();
 			if ($baseUrl != '/') {
 				return str_replace($baseUrl, '', $requestUri);
@@ -94,7 +94,7 @@ class Analytics {
 			return FALSE;
 		}
 		return TRUE;
-	}	
+	}
 
 	public function setCustomPageView($pageView) {
 		$this->session()->set(self::CUSTOM_PAGE_VIEW_KEY, $pageView);		
@@ -112,30 +112,30 @@ class Analytics {
 				try {
 					$user = $this->getContainer()->getCasService()->getUser();
 					if (isset($user)) {
-						$this->addCustomVar(1, 'logged', 'in', 2);						
+						$this->addCustomVar(1, 'logged', 'in', 2);
 						if ($seller = $user->getSeller()) {
-							$this->addCustomVar(2, 'entity', 'seller', 2);	
+							$this->addCustomVar(2, 'entity', 'seller', 2);
 						} else if ($supplier = $user->getSupplier()) {
-							$this->addCustomVar(2, 'entity', 'supplier', 2);	
+							$this->addCustomVar(2, 'entity', 'supplier', 2);
 						} else {
 							$this->addCustomVar(2, 'entity', 'customer', 2);
-						}						
+						}
 					} else {
-						$this->addCustomVar(1, 'logged', 'out', 2);	
+						$this->addCustomVar(1, 'logged', 'out', 2);
 					}
 				} catch (\Exception $e) {
-					$this->addCustomVar(1, 'logged', 'out', 2);						
-				}			
+					$this->addCustomVar(1, 'logged', 'out', 2);
+				}
 			} else {
-				$this->addCustomVar(1, 'logged', 'out', 2);	
+				$this->addCustomVar(1, 'logged', 'out', 2);
 			}
 		}
 
 		if ($this->getContainer()->has('session')) {
 			$sess = $this->getContainer()->get('session');
 			$pageView = $sess->get(self::CUSTOM_PAGE_VIEW_KEY);
-      $sess->remove(self::CUSTOM_PAGE_VIEW_KEY);
-			if (isset($pageView) && trim($pageView) != '' ) {	
+			$sess->remove(self::CUSTOM_PAGE_VIEW_KEY);
+			if (isset($pageView) && trim($pageView) != '' ) {
 				$this->customPageView = $pageView;
 			}
 		}
