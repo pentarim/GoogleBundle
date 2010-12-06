@@ -1,6 +1,6 @@
 <script type="text/javascript">
 var _gaq = _gaq || [];
-{% for tracker in _view.google_analytics.getTrackers(['shop']) %}
+{% for tracker in _view.google_analytics.getTrackers() %}
 
 	_gaq.push(function() {
 		var {{ tracker.name }} = _gaq._createAsyncTracker('{{ tracker.accountId }}','{{ tracker.name }}');

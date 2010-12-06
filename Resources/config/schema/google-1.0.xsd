@@ -15,11 +15,11 @@
 
   <xsd:complexType name="trackers">
     <xsd:sequence>
-      <xsd:element name="shop" type="shop" minOccurs="1" maxOccurs="1" />
+      <xsd:element name="default" type="default" minOccurs="1" maxOccurs="1" />
     </xsd:sequence>
   </xsd:complexType>
 
-  <xsd:complexType name="shop">
+  <xsd:complexType name="default">
     <xsd:attribute name="name" type="xsd:string" />
     <xsd:attribute name="accountId" type="xsd:string" />
     <xsd:attribute name="domain" type="xsd:string" />
