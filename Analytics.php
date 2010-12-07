@@ -12,13 +12,13 @@ class Analytics {
 	const PAGE_VIEW_QUEUE_KEY  = 'google_analytics/page_view/queue';
 	const FUNNEL_GOAL_KEY      = 'google_analytics/funnel_goal';
 
-	private $container;
-	private $request;
-	private $session;
-	private $trackers;
-	private $withoutBaseUrl = TRUE;
-	private $customPageView;
-	private $customVars = array();
+	protected $container;
+	protected $request;
+	protected $session;
+	protected $trackers;
+	protected $withoutBaseUrl = TRUE;
+	protected $customPageView;
+	protected $customVars = array();
 
 	public function __construct(ContainerInterface $c, Request $r, Session $s, array $t = array()) {
 		$this->container = $c;
