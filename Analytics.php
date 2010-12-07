@@ -6,6 +6,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session;
 
+use Bundle\GoogleBundle\Analytics;
+
 class Analytics {
 
 	const CUSTOM_PAGE_VIEW_KEY = 'google_analytics/page_view';
@@ -19,6 +21,8 @@ class Analytics {
 	protected $withoutBaseUrl = TRUE;
 	protected $customPageView;
 	protected $customVars = array();
+	protected $transaction;
+	protected $items = array();
 
 	public function __construct(ContainerInterface $c, Request $r, Session $s, array $t = array()) {
 		$this->container = $c;
@@ -105,7 +109,6 @@ class Analytics {
 	}
 
 	public function bootServices() {
-
 		if ($this->getContainer()->has('session')) {
 			$sess = $this->getContainer()->get('session');
 			$pageView = $sess->get(self::CUSTOM_PAGE_VIEW_KEY);
@@ -114,7 +117,6 @@ class Analytics {
 				$this->customPageView = $pageView;
 			}
 		}
-
 	}
 
 	public function addPageViewQueue($page) {
@@ -127,6 +129,56 @@ class Analytics {
 
 	public function hasPageViewQueue() {
 		return $this->has(self::PAGE_VIEW_QUEUE_KEY);
+	}
+
+	public function isTransactionValid() {
+		if (!$this->transaction || !$this->transaction->getOrderNumber()) {
+			return false;
+		}
+		if (!empty($this->items)) {
+			foreach ($this->items as $item) {
+				if (!$item->getOrderNumber() || !$item->getSku() || !$item->getPrice() || !$item->getQuantity()) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	public function setTransaction(Analytics\Transaction $transaction) {
+		$this->transaction = $transaction;
+	}
+
+	public function getTransaction() {
+		return $this->transaction;
+	}
+
+	public function hasItem(Analytics\Item $item) {
+		if ($this->items instanceof \Doctrine\Common\Collections\Collection) {
+			return $this->items->contains($item);
+		} else {
+			return in_array($item, $this->items, true);
+		}
+	}
+
+	public function addItem(Analytics\Item $item) {
+		$this->items[] = $item;
+	}
+
+	public function removeItem(Analytics\Item $item) {
+		if (!$this->hasItem($item)) {
+			return null;
+		}
+		if ($this->items instanceof \Doctrine\Common\Collections\Collection) {
+			return $this->items->removeElement($item);
+		} else {
+			unset($this->items[array_search($item, $this->items, true)]);
+			return $item;
+		}
+	}
+
+	public function getItems() {
+		return $this->items;
 	}
 
 	protected function add($key, $message) {
