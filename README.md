@@ -29,11 +29,11 @@ Enable loading of the Google Analytics service by adding the following to the ap
 
 in xml:
 - - -
-  <google:analytics>
-    <google:trackers>
-      <google:shop name="MyJavaScriptCompatibleVariableNameWithNoSpaces" accountId="UA-xxxx-x" domain=".mydomain.com"/>
-    </google:trackers>
-  </google:analytics>
+    <google:analytics>
+      <google:trackers>
+        <google:default name="MyJavaScriptCompatibleVariableNameWithNoSpaces" accountId="UA-xxxx-x" domain=".mydomain.com"/>
+      </google:trackers>
+    </google:analytics>
 
 #### View
 Include the Google Analytics Async template like this with twig
