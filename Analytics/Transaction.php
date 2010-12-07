@@ -5,6 +5,7 @@ namespace Bundle\GoogleBundle\Analytics;
 class Transaction {
 
 	protected $affiliation;
+	protected $city;
 	protected $country;
 	protected $orderNumber;
 	protected $shipping;
@@ -18,6 +19,14 @@ class Transaction {
 
 	public function getAffiliation() {
 		return $this->affiliation;
+	}
+
+	public function setCity($city) {
+		$this->city = (string) $city;
+	}
+
+	public function getCity() {
+		return $this->city;
 	}
 
 	public function setCountry($country) {
