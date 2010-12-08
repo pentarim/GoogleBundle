@@ -61,6 +61,10 @@ class AnalyticsHelper extends Helper {
 		return $this->analytics->getTransaction();
 	}
 
+	public function hasItems() {
+		return $this->analytics->hasItems();
+	}
+
 	public function getItems() {
 		return $this->analytics->getItems();
 	}
