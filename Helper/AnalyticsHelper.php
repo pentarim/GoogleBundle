@@ -53,6 +53,18 @@ class AnalyticsHelper extends Helper {
 		return $this->analytics->getPageViewQueue();
 	}
 
+	public function isTransactionValid() {
+		return $this->analytics->isTransactionValid();
+	}
+
+	public function getTransaction() {
+		return $this->analytics->getTransaction();
+	}
+
+	public function getItems() {
+		return $this->analytics->getItems();
+	}
+
 	public function getName() {
 		return 'google_analytics';
 	}
