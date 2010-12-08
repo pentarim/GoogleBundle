@@ -4,7 +4,16 @@ namespace Bundle\GoogleBundle\Maps;
 
 class Map {
 
+	protected $id;
 	protected $markers = array();
+
+	public function setId($id) {
+		$this->id = (string) $id;
+	}
+
+	public function getId() {
+		return $this->id;
+	}
 
 	public function hasMarkers() {
 		if (!empty($this->markers)) {

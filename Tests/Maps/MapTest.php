@@ -20,7 +20,14 @@ class MapTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testConstructor() {
+		$this->assertFalse($this->map->getId());
 		$this->assertFalse($this->map->hasMarkers());
+	}
+
+	public function testSetGetId() {
+		$val = 'xxxxxx';
+		$this->map->setId($val);
+		$this->assertEquals($val, $this->map->getId());
 	}
 
 	public function testSetGetMarkers() {
