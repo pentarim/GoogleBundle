@@ -1,0 +1,21 @@
+<container xmlns="http://www.symfony-project.org/schema/dic/services"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd">
+
+	<parameters>
+		<parameter key="google.maps_manager.class">Bundle\GoogleBundle\MapsManager</parameter>
+		<parameter key="google.maps.config" type="collection" />
+	</parameters>
+
+	<services>
+		<service id="google.maps" class="%google.maps_manager.class%" >
+			<argument>%google.maps.config%</argument>
+		</service>
+
+		<service id="templating.helper.google_maps" class="Bundle\GoogleBundle\Helper\MapsHelper">
+			<tag name="templating.helper" alias="google_maps" />
+			<argument type="service" id="google.maps" />
+		</service>
+	</services>
+
+</container>
