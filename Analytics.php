@@ -135,7 +135,7 @@ class Analytics {
 		if (!$this->transaction || !$this->transaction->getOrderNumber()) {
 			return false;
 		}
-		if ($this->hasItems())) {
+		if ($this->hasItems()) {
 			foreach ($this->items as $item) {
 				if (!$item->getOrderNumber() || !$item->getSku() || !$item->getPrice() || !$item->getQuantity()) {
 					return false;
