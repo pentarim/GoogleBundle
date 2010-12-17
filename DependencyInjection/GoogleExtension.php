@@ -11,7 +11,22 @@ class GoogleExtension extends Extension {
 	protected $resources = array(
 		'google_adwords'   => 'adwords.xml',
 		'google_analytics' => 'analytics.xml',
+		'google_maps'      => 'maps.xml',
 	);
+
+	public function adwordsLoad($config, ContainerBuilder $container) {
+		if (!$container->hasDefinition('google.adwords')) {
+			$loader = new XmlFileLoader($container, __DIR__.'/../Resources/config');
+			$loader->load($this->resources['google_adwords']);
+		}
+		if (isset($config['originator'])) {
+			$container->setParameter('google.adwords.originator', $config['originator']);
+		}
+		if (isset($config['conversions'])) {
+			$container->setParameter('google.adwords.conversions', $config['conversions']);
+		}
+		return $container;
+	}
 
 	public function analyticsLoad($config, ContainerBuilder $container) {
 		if (!$container->hasDefinition('google.analytics')) {
@@ -24,16 +39,13 @@ class GoogleExtension extends Extension {
 		return $container;
 	}
 
-	public function adwordsLoad($config, ContainerBuilder $container) {
-		if (!$container->hasDefinition('google.adwords')) {
+	public function mapsLoad($config, ContainerBuilder $container) {
+		if (!$container->hasDefinition('google.maps')) {
 			$loader = new XmlFileLoader($container, __DIR__.'/../Resources/config');
-			$loader->load($this->resources['google_adwords']);
+			$loader->load($this->resources['google_maps']);
 		}
-		if (isset($config['originator'])) {
-			$container->setParameter('google.adwords.originator', $config['originator']);
-		}
-		if (isset($config['conversions'])) {
-			$container->setParameter('google.adwords.conversions', $config['conversions']);
+		if (isset($config['config'])) {
+			$container->setParameter('google.maps.config', $config['config']);
 		}
 		return $container;
 	}

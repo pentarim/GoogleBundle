@@ -2,10 +2,11 @@
 
 namespace Bundle\GoogleBundle\Maps;
 
-class Map {
+abstract class AbstractMap implements MapInterface {
 
 	protected $id;
 	protected $markers = array();
+	protected $meta = array();
 
 	public function setId($id) {
 		$this->id = (string) $id;
@@ -52,6 +53,18 @@ class Map {
 
 	public function getMarkers() {
 		return $this->markers;
+	}
+
+	public function hasMeta() {
+		return !empty($this->meta);
+	}
+
+	public function setMeta(array $meta = new array()) {
+		$this->meta = $meta;
+	}
+
+	public function getMeta() {
+		return $this->meta;
 	}
 
 }
