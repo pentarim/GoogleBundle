@@ -15,5 +15,6 @@ interface MapInterface {
 	public function hasMeta();
 	public function setMeta(array $meta);
 	public function getMeta();
+	public function render();
 
 }

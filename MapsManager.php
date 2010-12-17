@@ -28,7 +28,7 @@ class MapsManager {
 		return false;
 	}
 
-	public function hasMap(Maps\Map $map) {
+	public function hasMap(Maps\MapInterface $map) {
 		if ($this->maps instanceof \Doctrine\Common\Collections\Collection) {
 			return $this->maps->contains($map);
 		} else {
@@ -36,11 +36,11 @@ class MapsManager {
 		}
 	}
 
-	public function addMap(Maps\Map $map) {
+	public function addMap(Maps\MapInterface $map) {
 		$this->maps[] = $map;
 	}
 
-	public function removeMap(Maps\Map $map) {
+	public function removeMap(Maps\MapInterface $map) {
 		if (!$this->hasMap($map)) {
 			return null;
 		}
