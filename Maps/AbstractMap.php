@@ -59,7 +59,7 @@ abstract class AbstractMap implements MapInterface {
 		return !empty($this->meta);
 	}
 
-	public function setMeta(array $meta = new array()) {
+	public function setMeta(array $meta = array()) {
 		$this->meta = $meta;
 	}
 

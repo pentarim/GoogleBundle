@@ -11,9 +11,9 @@ interface MapInterface {
 	public function setMarkers($markers);
 	public function getMarkers();
 	public function addMarker(Marker $marker);
-	public function removeMaker(Marker $marker);
+	public function removeMarker(Marker $marker);
 	public function hasMeta();
-	public function setMeta($meta);
+	public function setMeta(array $meta);
 	public function getMeta();
 
 }

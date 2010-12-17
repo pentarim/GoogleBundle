@@ -65,7 +65,7 @@ class StaticMapTest extends \PHPUnit_Framework_TestCase {
 
 	public function testSetGetSize() {
 		$val = '512x512';
-		$this->map->setSize($size);
+		$this->map->setSize($val);
 		$this->assertEquals($val, $this->map->getSize());
 	}
 

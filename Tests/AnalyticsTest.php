@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\GoogleBundle;
+namespace Bundle\GoogleBundle\Tests;
 
 use Bundle\GoogleBundle\Analytics;
 

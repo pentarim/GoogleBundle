@@ -19,8 +19,23 @@ class MarkerTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testConstructor() {
+		$this->assertNull($this->marker->getColor());
+		$this->assertNull($this->marker->getLabel());
 		$this->assertNull($this->marker->getLatitude());
 		$this->assertNull($this->marker->getLongitude());
+		$this->assertFalse($this->marker->hasMeta());
+	}
+
+	public function testSetGetColor() {
+		$val = "red";
+		$this->marker->setColor("red");
+		$this->assertEquals($val, $this->marker->getColor());
+	}
+
+	public function testSetGetLabel() {
+		$val = "A";
+		$this->marker->setLabel($val);
+		$this->assertEquals($val, $this->marker->getLabel());
 	}
 
 	public function testSetGetLatitude() {
@@ -33,6 +48,12 @@ class MarkerTest extends \PHPUnit_Framework_TestCase {
 		$val = 15.9669;
 		$this->marker->setLongitude($val);
 		$this->assertEquals($val, $this->marker->getLongitude());
+	}
+
+	public function testSetGetMeta() {
+		$meta = array(1, 2, 3);
+		$this->marker->setMeta($meta);
+		$this->assertEquals($meta, $this->marker->getMeta());
 	}
 
 }
