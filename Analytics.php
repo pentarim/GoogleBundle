@@ -153,6 +153,13 @@ class Analytics {
 		return $this->transaction;
 	}
 
+	public function hasItems() {
+		if (!empty($this->items)) {
+			return true;
+		}
+		return false;
+	}
+
 	public function hasItem(Analytics\Item $item) {
 		if ($this->items instanceof \Doctrine\Common\Collections\Collection) {
 			return $this->items->contains($item);
@@ -175,6 +182,10 @@ class Analytics {
 			unset($this->items[array_search($item, $this->items, true)]);
 			return $item;
 		}
+	}
+
+	public function setItems($items) {
+		$this->items = $items;
 	}
 
 	public function getItems() {

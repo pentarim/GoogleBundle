@@ -32,14 +32,14 @@ var _gaq = _gaq || [];
 
 	{% if _view.google_analytics.isTransactionValid() %}
 		_gaq.push(['{{ tracker.name }}._addTrans',
-			'{{ _view.google_analytics.transaction.orderNumber | escape('js') }}',
-			'{{ _view.google_analytics.transaction.affiliation | escape('js') }}',
-			'{{ _view.google_analytics.transaction.total | escape('js') }}',
-			'{{ _view.google_analytics.transaction.tax | escape('js') }}',
-			'{{ _view.google_analytics.transaction.shipping | escape('js') }}',
-			'{{ _view.google_analytics.transaction.city | escape('js') }}',
-			'{{ _view.google_analytics.transaction.state | escape('js') }}',
-			'{{ _view.google_analyitcs.transaction.country | escape('js') }}'
+			'{{ _view.google_analytics.transaction.orderNumber | escape('js') }}', // order number required
+			'{{ _view.google_analytics.transaction.affiliation | escape('js') }}', // affiliation optional
+			'{{ _view.google_analytics.transaction.total | escape('js') }}', // total optional
+			'{{ _view.google_analytics.transaction.tax | escape('js') }}', // tax optional
+			'{{ _view.google_analytics.transaction.shipping | escape('js') }}', // shipping optional
+			'{{ _view.google_analytics.transaction.city | escape('js') }}', // city optional
+			'{{ _view.google_analytics.transaction.state | escape('js') }}', // state optional 
+			'{{ _view.google_analytics.transaction.country | escape('js') }}' // country optional
 		]);
 
 		{% if _view.google_analytics.hasItems() %}
@@ -47,8 +47,8 @@ var _gaq = _gaq || [];
 				_gaq.push(['{{ tracker.name }}._addItem',
 					'{{ item.orderNumber | escape('js') }}', // order number required
 					'{{ item.sku | escape('js') }}', // sku required
-					'{{ item.name | escape('js') }}',
-					'{{ item.category | escape('js') }}',
+					'{{ item.name | escape('js') }}', // name optional
+					'{{ item.category | escape('js') }}', // category optional
 					'{{ item.price | escape('js') }}', // price required
 					'{{ item.quantity | escape('js') }}' // quantity required
 				]);
