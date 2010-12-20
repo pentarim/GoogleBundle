@@ -96,3 +96,40 @@ the applications's `config.yml` file:
 Include the Google Adwords tracking template like this
 
     {% include "GoogleBundle:Adwords:track.twig" with ['_view': _view] %}
+
+### Google Maps - Static Map
+
+#### Application config.yml
+
+Enable loading of the Google Maps Static service by adding the following to
+the applications's `config.yml` file (The static service does NOT require an API Key):
+
+    google.maps: ~
+
+#### Controller
+
+    use Bundle\GoogleBundle\Maps\StaticMap;
+    use Bundle\GoogleBundle\Maps\Marker;
+
+    ...
+
+    $map = new StaticMap();
+    $map->setId("Paul");
+    $map->setSize("512x512");
+    $marker = new Marker();
+    $marker->setLatitude(40.596631);
+    $marker->setLongitude(-73.972359);
+    $map->addMarker($marker);
+    $this->container->get('google.maps')->addMap($map);
+
+#### View
+
+Include the Google Maps in your template like this:
+
+    {% if _view.google_maps.hasMaps() %}
+		{% for map in _view.google_maps.getMaps() %}
+			{% autoescape off %}
+				{{ map.render }}
+			{% endautoescape %}
+		{% endfor %}
+	{% endif %}
