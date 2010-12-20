@@ -24,7 +24,7 @@ class StaticMapTest extends \PHPUnit_Framework_TestCase {
 		$this->assertFalse($this->map->hasMarkers());
 		$this->assertFalse($this->map->hasMeta());
 		$this->assertNull($this->map->getCenter());
-		$this->assertNull($this->map->getSensor());
+		$this->assertFalse($this->map->getSensor());
 		$this->assertNull($this->map->getSize());
 		$this->assertNull($this->map->getType());
 		$this->assertNull($this->map->getZoom());

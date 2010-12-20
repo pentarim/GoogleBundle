@@ -5,23 +5,9 @@ namespace Bundle\GoogleBundle\Maps;
 class StaticMap extends AbstractMap {
 
 	const API_ENDPOINT = 'http://maps.google.com/maps/api/staticmap?';
-	const TYPE_ROADMAP = 'roadmap';
 
 	protected $height;
 	protected $width;
-	protected $sensor = false;
-
-	static protected $typeChoices = array(
-		self::TYPE_ROADMAP => 'Road Map',
-	);
-
-	static public function getTypeChoices() {
-		return self::$typeChoices;
-	}
-
-	static public function isTypeValid($type) {
-		return array_key_exists($type, static::$typeChoices);
-	}
 
 	public function setCenter($center) {
 		$this->meta['center'] = (string) $center;
@@ -41,14 +27,6 @@ class StaticMap extends AbstractMap {
 		return $this->height;
 	}
 
-	public function setSensor($sensor) {
-		$this->sensor = (bool) $sensor;
-	}
-
-	public function getSensor() {
-		return $this->sensor;
-	}
-
 	public function setSize($size) {
 		$arr = explode('x', $size);
 		if (isset($arr[0])) {
@@ -61,25 +39,13 @@ class StaticMap extends AbstractMap {
 	}
 
 	public function getSize() {
-		if ($height = $this->getHeight() && $width = $this->getWidth()) {
-			$this->meta['size'] = $width.'x'.$height;
+		if (($height = $this->getHeight()) && ($width = $this->getWidth())) {
+			$this->meta['size']  = $width;
+			$this->meta['size'] .= 'x';
+			$this->meta['size'] .= $height;
 		}
 		if (array_key_exists('size', $this->meta)) {
 			return $this->meta['size'];
-		}
-	}
-
-	public function setType($type) {
-		$type = (string) $type;
-		if (FALSE === $this->isTypeValid($type)) {
-			throw new \InvalidArgumentException($type.' is not a valid Static Map Type.');
-		}
-		$this->meta['type'] = $type;
-	}
-
-	public function getType() {
-		if (array_key_exists('type', $this->meta)) {
-			return $this->meta['type'];
 		}
 	}
 
